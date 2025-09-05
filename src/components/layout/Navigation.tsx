@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import agentboxLogo from "@/assets/agentbox-logo.png";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,9 +12,14 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold hero-gradient-text">
+            <img 
+              src={agentboxLogo} 
+              alt="AgentBox Logo" 
+              className="h-8 w-auto"
+            />
+            <span className="ml-2 text-xl font-bold hero-gradient-text">
               AgentBox
-            </div>
+            </span>
           </div>
 
           {/* Desktop Navigation */}
