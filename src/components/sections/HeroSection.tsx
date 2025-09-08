@@ -1,6 +1,9 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { useState, useEffect } from "react";
+import { CompanyLogos } from "@/components/ui/company-logos";
 
 const HeroSection = () => {
   const agentTypes = [
@@ -77,13 +80,7 @@ const HeroSection = () => {
             <p className="text-sm text-muted-foreground mb-6 uppercase tracking-wider">
               TRUSTED BY
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center opacity-60 hover:opacity-80 transition-opacity">
-              {["Perplexity", "Hugging Face", "Groq", "Lindy", "Manus", "OpenAI"].map((company) => (
-                <div key={company} className="text-lg font-semibold text-muted-foreground">
-                  {company}
-                </div>
-              ))}
-            </div>
+            <CompanyLogos />
           </div>
         </div>
       </div>

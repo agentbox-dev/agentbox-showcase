@@ -1,26 +1,42 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, Settings, LogOut, Home } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import agentboxLogo from "@/assets/agentbox-logo.png";
+import { useAuth } from "@/contexts/AuthContext";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <img 
+          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <Image 
               src={agentboxLogo} 
               alt="AgentBox Logo" 
+              width={32}
+              height={32}
               className="h-8 w-auto"
             />
             <span className="ml-2 text-xl font-bold hero-gradient-text">
               AgentBox
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -40,12 +56,49 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
-              Sign In
-            </Button>
-            <Button className="bg-hero-gradient hover:shadow-glow-md transition-all duration-300">
-              Start for Free
-            </Button>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                      <User className="w-4 h-4" />
+                    </div>
+                    <span>{user?.firstName}</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link href="/home" className="flex items-center">
+                      <Home className="w-4 h-4 mr-2" />
+                      Home
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/home/settings" className="flex items-center">
+                      <Settings className="w-4 h-4 mr-2" />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={logout} className="flex items-center text-red-600">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button variant="ghost" asChild className="text-muted-foreground hover:text-foreground">
+                  <Link href="/auth/login">Sign In</Link>
+                </Button>
+                <Button asChild className="bg-hero-gradient hover:shadow-glow-md transition-all duration-300">
+                  <Link href="/auth/register">Start for Free</Link>
+                </Button>
+              </>
+            )}
+            
+            {/* Theme Toggle - Always visible */}
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
@@ -77,12 +130,34 @@ const Navigation = () => {
                 Docs
               </a>
               <div className="pt-4 border-t border-border">
-                <Button variant="ghost" className="w-full mb-2 text-muted-foreground hover:text-foreground">
-                  Sign In
-                </Button>
-                <Button className="w-full bg-hero-gradient hover:shadow-glow-md transition-all duration-300">
-                  Start for Free
-                </Button>
+                {isAuthenticated ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 px-3 py-2">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <User className="w-4 h-4" />
+                      </div>
+                      <span className="font-medium">{user?.firstName} {user?.lastName}</span>
+                    </div>
+                    <Button variant="ghost" asChild className="w-full text-muted-foreground hover:text-foreground">
+                      <Link href="/home">Home</Link>
+                    </Button>
+                    <Button variant="ghost" asChild className="w-full text-muted-foreground hover:text-foreground">
+                      <Link href="/home/settings">Settings</Link>
+                    </Button>
+                    <Button onClick={logout} variant="ghost" className="w-full text-red-600 hover:text-red-700">
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <Button variant="ghost" asChild className="w-full mb-2 text-muted-foreground hover:text-foreground">
+                      <Link href="/auth/login">Sign In</Link>
+                    </Button>
+                    <Button asChild className="w-full bg-hero-gradient hover:shadow-glow-md transition-all duration-300">
+                      <Link href="/auth/register">Start for Free</Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>

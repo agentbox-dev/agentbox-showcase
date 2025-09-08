@@ -1,73 +1,170 @@
-# Welcome to your Lovable project
+# AgentBox Showcase
 
-## Project info
+A modern, full-stack AI agent management platform built with Next.js 15, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/6e68f5ba-0c6e-4c26-8648-b235000b4402
+## 🚀 Features
 
-## How can I edit this code?
+- **Home**: Comprehensive overview of agents, sandboxes, and team activities
+- **Team Management**: Multi-team support with role-based access control
+- **Template Library**: Pre-built agent templates for quick deployment
+- **Sandbox Environment**: Isolated execution environments for testing
+- **Theme System**: Light/Dark mode with system preference detection
+- **Authentication**: Secure login, registration, and password management
+- **Responsive Design**: Mobile-first approach with modern UI components
 
-There are several ways of editing your application.
+## 🏗️ Tech Stack
 
-**Use Lovable**
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + Shadcn/ui
+- **State Management**: React Context API
+- **Authentication**: Custom auth system with JWT
+- **Icons**: Lucide React
+- **Package Manager**: pnpm
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6e68f5ba-0c6e-4c26-8648-b235000b4402) and start prompting.
+## 📁 Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+├── app/                    # Next.js App Router pages
+│   ├── auth/              # Authentication pages
+│   ├── home/              # Home and sub-pages
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── providers.tsx      # Context providers
+├── src/
+│   ├── components/        # Reusable components
+│   │   ├── auth/         # Authentication components
+│   │   ├── layout/       # Layout components
+│   │   ├── sections/     # Page sections
+│   │   └── ui/           # UI components (Shadcn/ui)
+│   ├── contexts/         # React Context providers
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility libraries
+│   ├── types/            # TypeScript type definitions
+│   ├── constants/        # Application constants
+│   └── utils/            # Utility functions
+├── public/               # Static assets
+└── config files         # Configuration files
 ```
 
-**Edit a file directly in GitHub**
+## 🛠️ Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Prerequisites
 
-**Use GitHub Codespaces**
+- Node.js 18+ 
+- pnpm (recommended) or npm
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Installation
 
-## What technologies are used for this project?
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd agentbox-showcase
+```
 
-This project is built with:
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+# Edit .env.local with your configuration
+```
 
-## How can I deploy this project?
+4. Run the development server:
+```bash
+pnpm dev
+```
 
-Simply open [Lovable](https://lovable.dev/projects/6e68f5ba-0c6e-4c26-8648-b235000b4402) and click on Share -> Publish.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Can I connect a custom domain to my Lovable project?
+## 🔧 Configuration
 
-Yes, you can!
+### Environment Variables
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Create a `.env.local` file with the following variables:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```env
+# API Configuration
+API_URL=https://api.agentbox.lingyiwanwu.com
+NEXT_PUBLIC_API_URL=https://api.agentbox.lingyiwanwu.com
+
+# Development
+DEBUG_MODE=true
+```
+
+### Theme Configuration
+
+The app supports light and dark themes with automatic system preference detection. Themes are managed through the `ThemeContext` and persisted in localStorage.
+
+## 📱 Features Overview
+
+### Home
+- Real-time statistics and metrics
+- Recent activity feed
+- Team information display
+- Popular templates showcase
+
+### Team Management
+- Multi-team workspace support
+- Role-based permissions (Owner, Admin, Member)
+- Team switching functionality
+- Member management
+
+### Templates
+- Pre-built agent templates
+- Category-based filtering
+- Search functionality
+- Usage statistics
+
+### Authentication
+- Secure login/registration
+- Password reset functionality
+- Protected routes
+- Session management
+
+## 🎨 UI Components
+
+Built with Shadcn/ui components:
+- Consistent design system
+- Accessible components
+- Dark/light theme support
+- Responsive design
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Configure environment variables
+4. Deploy automatically
+
+### Other Platforms
+
+The app can be deployed to any platform that supports Next.js:
+- Netlify
+- AWS Amplify
+- Railway
+- DigitalOcean App Platform
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+For support and questions:
+- Create an issue in the repository
+- Check the documentation
+- Contact the development team
